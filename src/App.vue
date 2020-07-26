@@ -1,28 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld :gridSettings="gridSettings"/>
+    <!-- <Controls :gridSettings="gridSettings"></Controls> -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import HelloWorld from './components/HelloWorld.vue'
+// import Controls from './components/Controls.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+    // Controls
+  },
+  data() {
+    return {
+      gridSettings: {
+        1: {
+          size: 4,
+          visible: true
+        },
+        2: {
+          size: 4,
+          visible: false
+        },
+        3: {
+          size: 4,
+          visible: false
+        }
+      }
+    }
+  },
 }
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  padding: 0;
+  margin: 0;
 }
 </style>
