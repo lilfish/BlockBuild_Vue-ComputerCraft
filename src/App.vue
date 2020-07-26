@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <BlockEditorComponent/>
+    <block-editor/>
   </div>
 </template>
 
 <script>
 
-import BlockEditorComponent from './components/BlockEditorComponent.vue'
+import BlockEditor from './components/BlockEditorComponent.vue'
 export default {
   name: 'App',
   components: {
-    BlockEditorComponent,
+    BlockEditor,
   },
 }
 </script>

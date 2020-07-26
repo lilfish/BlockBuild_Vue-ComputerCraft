@@ -71,12 +71,12 @@ export default {
           geometry.faces[i].color = this.colors[colorIndex];
           geometry.faces[second].color = this.colors[colorIndex];
         }
-      // Create and add texture cube;
+      // Create and add background cube;
       this.textureCube = new Three.Mesh(geometry, material);
-      this.textureCube.rotation.x = -0.3;
+      this.textureCube.rotation.x = -0.25;
       this.textureCube.rotation.y = -0.5;
       this.scene.add(this.textureCube);
-      // Add textures & material
+      // Add textures & materials
       var textureLoader = new Three.TextureLoader();
       textureLoader.load(require("../assets/eyeIcon.png"), artworkTexture => {
         this.seenTexture = artworkTexture;
@@ -93,12 +93,13 @@ export default {
           const visible = this.grids[i].visible;
           visible ? materials.push(this.basicMaterialTexture) : materials.push(this.basicMaterialNull);
         }
+        // Create and add texture cube
         this.cube = new Three.Mesh(geometry, materials);
-        this.cube.rotation.x = -0.3;
+        this.cube.rotation.x = -0.25;
         this.cube.rotation.y = -0.5;
         this.scene.add(this.cube);
       });
-
+      // Make raycaster to see where we click on the texture cube
       this.raycaster = new Three.Raycaster();
     },
     animate: function () {

@@ -17,7 +17,7 @@ import blockScript from '../scripts/blockScript.js'
 var OrbitControls = require('three-orbit-controls')(Three)
 
 export default {
-  name: 'ThreeTest',
+  name: 'BlockEditor',
   components: {
     GridControls
   },
@@ -48,8 +48,8 @@ export default {
         },
         {
           color: "green",
-          size: 2,
-          visible: false
+          size: 4,
+          visible: true
         },
         {
           color: "blue",
@@ -91,6 +91,7 @@ export default {
       let geometry = new Three.BoxGeometry();
       let material = new Three.MeshBasicMaterial({ color: 0xffffff, flatShading: true });
       this.cube = new Three.Mesh(geometry, material);
+      this.cube.position = {x: 0, y: 0, z: 0}
       this.scene.add(this.cube);
       // Add grid
       this.updateGrid();
@@ -108,9 +109,9 @@ export default {
         this.cube.position.x -= 1;
       } else if (e.key == "d") {
         this.cube.position.x += 1;
-      } else if (e.keyCode == 32) { //Spatie
+      } else if (e.code == "Space" && e.shiftKey == false) {
         this.cube.position.y += 1;
-      } else if (e.key == "Shift") {
+      } else if (e.code == "Space" && e.shiftKey == true) {
         this.cube.position.y -= 1;
       } else if (e.key == "e") {
         this.createBlock();
@@ -181,14 +182,6 @@ export default {
     animate: function () {
       requestAnimationFrame(this.animate);
       this.renderer.render(this.scene, this.camera);
-    }
-  },
-  watch: {
-    gridSettings: {
-      deep: true,
-      handler () {
-        this.updateGrid()
-      }
     }
   },
   mounted () {
